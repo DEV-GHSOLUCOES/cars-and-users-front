@@ -10,10 +10,10 @@ export class AppConstants {
     }
 
     public static get urlApiUsers(): string {
-        return this.urlServidor + "cars-and-users-api/api/users"
+        return this.urlServidor + "cars-and-users-api/api/users/"
     }
 
     public static get urlApiCars(): string {
-        return this.urlServidor + "cars-and-users-api/api/cars"
+        return this.urlServidor + "cars-and-users-api/api/cars/"
     }
 }

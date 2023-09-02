@@ -18,8 +18,19 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getListUser().subscribe(data=> {
+    this.userService.listUsers().subscribe(data=> {
       this.users =  data;
+    });
+  }
+
+  deleteUserById(id : Number){
+    this.userService.deleteUserById(id).subscribe(data => {
+      console.log("retorno do metodo delete : " + data);
+
+      this.userService.listUsers().subscribe(data=> {
+        this.users =  data;
+      });
+
     });
   }
 

@@ -23,6 +23,7 @@
               <li *ngFor="let car of user.cars">{{ car.model }}</li>
             </ul>
           </td>
+          <td><button (click)="deleteUserById(user.id)" class="btn btn-primary">Delete</button></td>
 
     </tr>
 </tbody>

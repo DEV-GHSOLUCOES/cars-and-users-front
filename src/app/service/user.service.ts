@@ -10,7 +10,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getListUser() : Observable<any>{
+  listUsers() : Observable<any>{
     return this.http.get<any>(AppConstants.urlApiUsers)
   }
+
+  deleteUserById(id: Number) : Observable<any>{
+    return this.http.delete(AppConstants.urlApiUsers + id, {responseType : 'json'});
+  }
+
 }
