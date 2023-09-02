@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConstants } from '../app-constants';
-import { error } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { error } from '@angular/compiler/src/util';
 })
 export class LoginServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 login(user: any){
   
@@ -18,8 +18,10 @@ login(user: any){
     var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
     localStorage.setItem("token", token);
 
-    //console.info("token " + localStorage.getItem("token"))
+    console.info("token " + localStorage.getItem("token"))
 
+    this.router.navigate(['home']);
+    localStorage.clear;
    }, 
 
     error => {
