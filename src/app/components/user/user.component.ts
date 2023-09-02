@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
 
@@ -12,6 +13,10 @@ import { UserService } from 'src/app/service/user.service';
 export class UserComponent implements OnInit {
 
   users!: User[];
+  id!: number;
+
+  errorMessage: string  = '';
+  
 
   constructor(private userService: UserService) { 
 
@@ -34,4 +39,17 @@ export class UserComponent implements OnInit {
     });
   }
 
+  getUserById() {
+    this.errorMessage = ''; // Limpa a mensagem de erro antes da nova consulta
+    this.userService.getUserById(this.id).pipe(
+      catchError((error: any) => {
+        // Lida com o erro aqui e configura a mensagem de erro
+        this.errorMessage = error.error[0].message || 'Erro desconhecido ao buscar usuário.';
+        return throwError(error); // Rejeita o erro para que o próximo manipulador possa lidar com ele, se necessário.
+      })
+    ).subscribe(data => {
+      // Lida com a resposta com sucesso aqui
+      this.users = [data];
+    });
+  }
 }

@@ -1,3 +1,20 @@
+
+<br/>
+<br/>
+
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2" >
+    <input type="number" class="form-control" id="id" name="id" [(ngModel)]="id" placeholder="Pesquisa por id">
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+  </div>
+  <button type="button" (click)="getUserById()"  class="btn btn-primary mb-2">Buscar</button>
+</form>
+
+<br/>
+<br/>
+
 <table class="table">
     <thead class="thread-dark">
         <th scope="col">ID</th>
@@ -20,7 +37,8 @@
         <td>{{user.phone}}</td>
         <td>
             <ul style="list-style: none;">
-              <li *ngFor="let car of user.cars">{{ car.model }}</li>
+                <li *ngFor="let car of user.cars || []">{{ car.model }}</li>
+
             </ul>
           </td>
           <td><button (click)="deleteUserById(user.id)" class="btn btn-primary">Delete</button></td>
