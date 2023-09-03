@@ -7,7 +7,8 @@ export class User {
     lastName!: string;
     email!: string;
     birthday!: string;
-    login!: string
+    login!: string;
+    password!: string;
     phone!: string;
     cars!: Car[];
 

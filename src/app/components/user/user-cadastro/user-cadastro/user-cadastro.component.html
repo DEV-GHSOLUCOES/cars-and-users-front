@@ -1,0 +1,68 @@
+<h3 style="padding: 20px;">Tela de Usuario</h3>
+
+<form style="padding: 15px;">
+    <div class="form-row">
+    <div class="form-group col-md-1">
+        <label for="id">ID</label>
+        <input type="text" [(ngModel)]="user.id" class="form-control" id="id" name="id" readonly="true" autocomplete="false">
+    </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="firstName">Nome</label>
+            <input type="text" [(ngModel)]="user.firstName" class="form-control" id="firstName" name="firstName" required="true" autocomplete="false">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="lastName">Sobrenome</label>
+            <input type="text"  [(ngModel)]="user.lastName"  class="form-control" id="lastName" name="lastName" required="true" autocomplete="false">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" [(ngModel)]="user.email"  class="form-control" id="email" name="email" required="true"  autocomplete="false">
+        </div>
+
+        <div class="form-group col-md-6">
+             <label for="birthday">Data de nascimento</label>
+            <input type="date"  [(ngModel)]="user.birthday" class="form-control" id="birthday" name="birthday" required="true"  autocomplete="false">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="login">Login</label>
+            <input type="text"  [(ngModel)]="user.login"  class="form-control" id="login" name="login" required="true"  autocomplete="false">
+        </div>
+
+        <div class="form-group col-md-6">
+             <label for="password">Password</label>
+            <input type="password"  [(ngModel)]="user.password" class="form-control" id="password" name="password" required="true"  autocomplete="false">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="phone">Telefone</label>
+            <input type="text" [(ngModel)]="user.phone" class="form-control" id="phone" name="phone" required="true"  autocomplete="false">      
+        </div>
+
+        <div class="form-group col-md-6" *ngIf="user.cars && user.cars.length >= 0">
+            <label for="cars">Carro</label>
+            <input type="text"  [(ngModel)]="user.cars[0].model" class="form-control" id="cars" name="cars" required="true"  autocomplete="false">      
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-secondary" [routerLink]="['/users']" routerLinkActive="router-link-active" >Voltar</button>
+          <button type="button" class="btn btn-success"  (click)="cleanUser()" style="margin-left: 10px;"  >Novo</button>
+          <button type="button" class="btn btn-primary" (click)="salvarUser(user)" style="margin-left: 10px;"  >Salvar</button>
+        </div>
+
+    </div>
+</form>

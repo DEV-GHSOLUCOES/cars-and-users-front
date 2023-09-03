@@ -44,8 +44,8 @@ export class UserComponent implements OnInit {
     this.userService.getUserById(this.id).pipe(
       catchError((error: any) => {
         // Lida com o erro aqui e configura a mensagem de erro
-        this.errorMessage = error.error[0].message || 'Erro desconhecido ao buscar usuário.';
-        return throwError(error); // Rejeita o erro para que o próximo manipulador possa lidar com ele, se necessário.
+        return this.errorMessage = error.error[0].message || 'Erro desconhecido ao buscar usuário.';
+          
       })
     ).subscribe(data => {
       // Lida com a resposta com sucesso aqui

@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UserComponent } from './components/user/user.component';
 import { CarComponent } from './components/car/car.component';
+import { UserCadastroComponent } from './components/user/user-cadastro/user-cadastro/user-cadastro.component';
 
 export const appRouters: Routes  = [
 
@@ -18,7 +19,9 @@ export const appRouters: Routes  = [
   {path : 'login', component :  LoginComponent},
   {path : '', component :  LoginComponent},
   {path : 'users', component : UserComponent},
-  {path : 'cars', component : CarComponent }
+  {path : 'cars', component : CarComponent },
+  {path : 'userCad', component : UserCadastroComponent},
+  {path : 'userCad/:id', component :  UserCadastroComponent},
  ];
 
  export const routes  : ModuleWithProviders = RouterModule.forRoot(appRouters);
@@ -29,7 +32,8 @@ export const appRouters: Routes  = [
     HomeComponent,
     LoginComponent,
     UserComponent,
-    CarComponent
+    CarComponent,
+    UserCadastroComponent
   ],
   imports: [
     BrowserModule,

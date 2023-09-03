@@ -3,14 +3,16 @@
 <br/>
 
 <form class="form-inline">
-  <div class="form-group mx-sm-3 mb-2" >
-    <input type="number" class="form-control" id="id" name="id" [(ngModel)]="id" placeholder="Pesquisa por id">
-    <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
-      </div>
-  </div>
-  <button type="button" (click)="getUserById()"  class="btn btn-primary mb-2">Buscar</button>
+    <div class="form-group mx-sm-3 mb-2" >
+        <input type="number" class="form-control" id="id" name="id" [(ngModel)]="id" placeholder="Pesquisa por id">
+        
+    </div>
+    
+    <button type="button" (click)="getUserById()"  class="btn btn-primary mb-2">Buscar</button>
+
+    <button type="button" [routerLink]="['/userCad']" routerLinkActive="router-link-active" style="margin-left: 5px;" class="btn btn-success mb-2">Novo</button>
 </form>
+<div *ngIf="errorMessage" class="alert alert-danger ">{{ errorMessage }}</div>
 
 <br/>
 <br/>
@@ -25,6 +27,9 @@
         <th scope="col">Login</th>
         <th scope="col">Telefone</th>
         <th scope="col">Carro</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        
     </thead>
 <tbody>
     <tr *ngFor="let user of users">
@@ -41,7 +46,8 @@
 
             </ul>
           </td>
-          <td><button (click)="deleteUserById(user.id)" class="btn btn-primary">Delete</button></td>
+          <td><button *ngIf="!errorMessage" (click)="deleteUserById(user.id)"class="btn btn-danger">Delete</button></td>
+          <td><button *ngIf="!errorMessage"  [routerLink]="['/userCad', user.id]" routerLinkActive="router-link-active" class="btn btn-warning">Editar</button></td>
 
     </tr>
 </tbody>
