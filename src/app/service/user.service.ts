@@ -13,11 +13,19 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   listUsers() : Observable<any>{
-    return this.http.get<any>(AppConstants.urlApiUsers, {responseType : 'json'});
+    return this.http.get<any>(AppConstants.urlApiUsers, {responseType : 'json'}).pipe(
+      catchError((error: any) => {
+        return throwError(error); // Lança a resposta de erro original da API.
+       })
+     );
   }
 
   deleteUserById(id: Number) : Observable<any>{
-    return this.http.delete(AppConstants.urlApiUsers + id, {responseType : 'json'});
+    return this.http.delete(AppConstants.urlApiUsers + id, {responseType : 'json'}).pipe(
+      catchError((error: any) => {
+        return throwError(error); // Lança a resposta de erro original da API.
+       })
+     );
   }
 
   getUserById(id: Number): Observable<any> {
@@ -29,10 +37,28 @@ export class UserService {
   }
 
   createUser(user: User) : Observable<any>{
-    return this.http.post<any>(AppConstants.urlApiUsers, user, {responseType : 'json'});
+    return this.http.post<any>(AppConstants.urlApiUsers, user, {responseType : 'json'}).pipe(
+    catchError((error: any) => {
+      return throwError(error); // Lança a resposta de erro original da API.
+     })
+   );
+ }
+  updateUserById( id: Number, user: User) : Observable<any>{
+    return this.http.put<any>(`${AppConstants.urlApiUsers}${id}`, user, { responseType: 'json' }).pipe(
+      catchError((error: any) => {
+        return throwError(error); // Lança a resposta de erro original da API.
+       })
+     );
   }
 
-  updateUserById( id: Number, user: User) : Observable<any>{
-    return this.http.put<any>(`${AppConstants.urlApiUsers}${id}`, user, { responseType: 'json' });
-  }
+
+  // deleteCarUserById(id: Number) : Observable<any>{
+  //   return this.http.delete(AppConstants.urlApiCars + id, {responseType : 'json'}).pipe(
+  //     catchError((error: any) => {
+  //       return throwError(error); // Lança a resposta de erro original da API.
+  //      })
+  //    );
+  // }
+
+
 }

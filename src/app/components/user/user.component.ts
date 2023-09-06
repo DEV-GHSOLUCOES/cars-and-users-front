@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   id!: number;
 
   errorMessage: string  = '';
+
+  searchSuccess: boolean = true;
   
 
   constructor(private userService: UserService) { 
@@ -29,6 +31,10 @@ export class UserComponent implements OnInit {
   }
 
   deleteUserById(id : Number){
+
+    if (confirm('Deseja mesmo excluir?')) {
+      
+  
     this.userService.deleteUserById(id).subscribe(data => {
       console.log("retorno do metodo delete : " + data);
 
@@ -38,12 +44,14 @@ export class UserComponent implements OnInit {
 
     });
   }
+  }
 
   getUserById() {
     this.errorMessage = ''; // Limpa a mensagem de erro antes da nova consulta
     this.userService.getUserById(this.id).pipe(
       catchError((error: any) => {
         // Lida com o erro aqui e configura a mensagem de erro
+        this.searchSuccess = false
         return this.errorMessage = error.error[0].message || 'Erro desconhecido ao buscar usuário.';
           
       })

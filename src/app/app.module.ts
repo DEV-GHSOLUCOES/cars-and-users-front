@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -12,16 +11,20 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UserComponent } from './components/user/user.component';
 import { CarComponent } from './components/car/car.component';
 import { UserCadastroComponent } from './components/user/user-cadastro/user-cadastro/user-cadastro.component';
+import { CarCadastroComponent } from './components/car/car-cadastro/car-cadastro/car-cadastro.component';
+
 
 export const appRouters: Routes  = [
 
-  {path : 'home', component :  HomeComponent}, 
+  {path : 'home', component :  HomeComponent, }, 
   {path : 'login', component :  LoginComponent},
   {path : '', component :  LoginComponent},
-  {path : 'users', component : UserComponent},
-  {path : 'cars', component : CarComponent },
-  {path : 'userCad', component : UserCadastroComponent},
-  {path : 'userCad/:id', component :  UserCadastroComponent},
+  {path : 'users', component : UserComponent,},
+  {path : 'cars', component : CarComponent, },
+  {path : 'userCad', component : UserCadastroComponent, },
+  {path : 'userCad/:id', component :  UserCadastroComponent,},
+  {path : 'carCad', component : CarCadastroComponent, },
+  {path : 'carCad/:id', component : CarCadastroComponent, },
  ];
 
  export const routes  : ModuleWithProviders = RouterModule.forRoot(appRouters);
@@ -33,7 +36,8 @@ export const appRouters: Routes  = [
     LoginComponent,
     UserComponent,
     CarComponent,
-    UserCadastroComponent
+    UserCadastroComponent,
+    CarCadastroComponent
   ],
   imports: [
     BrowserModule,

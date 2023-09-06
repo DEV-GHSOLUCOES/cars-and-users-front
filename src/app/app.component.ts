@@ -25,4 +25,14 @@ constructor(private router: Router){}
      this.router.navigate(['login']);
   }
 
+
+
+  public ocultarMenu(){
+    if (localStorage.getItem('token') !== null && localStorage.getItem('token')?.toString().trim() !== null) {
+     return false;     
+    }
+    else{
+      return true
+    }
+  }
 }

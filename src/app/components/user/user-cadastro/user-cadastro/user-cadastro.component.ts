@@ -12,6 +12,8 @@ import { UserService } from 'src/app/service/user.service';
 export class UserCadastroComponent implements OnInit {
 
    user = new User();
+   errorMessage: string  = '';
+   messageSuccess: string  = '';
 
   constructor(private  router: ActivatedRoute, private userService: UserService) { }
 
@@ -28,22 +30,49 @@ export class UserCadastroComponent implements OnInit {
 
   }
 
-  salvarUser(user: User){
-    //Atualizando user 
+  
+  salvarUser(user: User) {
+    this.errorMessage = '';
+    this.messageSuccess = '';
     if (this.user.id != null && this.user.id.toString().trim() != null) {
-      this.userService.updateUserById(this.user.id, this.user).subscribe(data => {
-        this.cleanUser();
-        console.info(" user ataualizado: " + data); 
-      });
+      this.userService.updateUserById(this.user.id, this.user).subscribe(
+        data => {
+          this.cleanUser();
+          console.info("Usuário atualizado: " + data);
+          this.messageSuccess = 'Usuario atualizado com sucesso!'
+        },
+        error => {
+          console.error("Erro ao atualizar o usuário:", error);
+          return this.errorMessage = error.error[0].message ;
+        
+  
+          
+        }
+      );
     }
-    else{
-      //Salvando um novo user
-      this.userService.createUser(this.user).subscribe(data => {
-        this.cleanUser();
-        console.info("gravou user: " + data);
-      });
+    else {
+      // Código para criar um novo usuário
+      this.userService.createUser(this.user).subscribe(
+        data => {
+          this.cleanUser();
+          console.info("Usuário gravado: " + data);
+         this.messageSuccess = 'Usuario salvo com sucesso!'
+        },
+        error => {
+          console.error("Erro ao gravar o usuário:", error);
+          
+          return this.errorMessage = error.error[0].message ;
+  
+         
+        }
+      );
     }
   }
+  
+
+
+
+
 
   cleanUser(){
     this.user = new User();

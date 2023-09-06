@@ -1,1 +1,48 @@
-<p>car works!</p>
+
+<br/>
+<br/>
+
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2" >
+        <input type="number" class="form-control" id="id" name="id" [(ngModel)]="id" placeholder="Pesquisar carro por id">
+        
+    </div>
+    
+    <button type="button" (click)="getCarById()"  class="btn btn-primary mb-2">Buscar</button>
+
+    <button type="button" [routerLink]="['/carCad']" routerLinkActive="router-link-active" style="margin-left: 5px;" class="btn btn-success mb-2">Novo</button>
+</form>
+ <div *ngIf="errorMessage" class="alert alert-danger ">{{ errorMessage }}</div>
+
+<br/>
+<br/>
+
+<table class="table">
+    <thead class="thread-dark">
+        <th scope="col">ID</th>
+        <th scope="col">Ano</th>
+        <th scope="col">Placa do carro</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Cor</th>
+        
+        <th scope="col"></th>
+        <th scope="col"></th>
+        
+    </thead>
+<tbody>
+    <tr *ngFor="let car of cars">
+        <td>{{car.id}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.licensePlate}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.color}}</td>
+        
+        
+        <td><button *ngIf="searchSuccess" (click)="deleteCarById(car.id)" class="btn btn-danger">Excluir</button></td>
+        <td><button *ngIf="searchSuccess"  [routerLink]="['/carCad', car.id]" routerLinkActive="router-link-active" class="btn btn-warning">Editar</button></td>
+        
+    </tr>
+</tbody>
+
+
+</table>

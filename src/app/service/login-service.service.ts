@@ -25,6 +25,7 @@ login(user: any){
    }, 
 
     error => {
+      
        console.error("Erro ao fazer login");
        alert('Acesso Negado!');
     }
